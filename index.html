@@ -112,7 +112,8 @@
     position: relative;
     border-bottom: 1px solid rgba(17, 17, 19, 0.08);
   }
-/* ==========================================================================
+
+  /* ==========================================================================
      2. BRIGHT SKY & COBALT 3D DIAGONAL SILK RIBBON + HIGH-CONTRAST READABLE TEXT
      ========================================================================== */
   .silk-stage {
@@ -139,7 +140,6 @@
     100% { transform: translate3d(-8%, -3%, 0) rotate(-31deg) scaleY(0.95); opacity: 0.85; }
   }
 
-  /* Primary Luminous Sky & Azure Blue Silk Ribbon */
   .silk-band-primary {
     position: absolute;
     top: -40%;
@@ -161,7 +161,6 @@
     animation: ribbonFast1 4.4s ease-in-out infinite;
   }
 
-  /* Secondary Deep Sapphire & Periwinkle Fold for 3D Depth */
   .silk-band-secondary {
     position: absolute;
     top: -30%;
@@ -181,7 +180,6 @@
     animation: ribbonFast2 5.4s ease-in-out infinite;
   }
 
-  /* Crisp Ice-White Specular Crease Highlight */
   .silk-crease {
     position: absolute;
     top: -25%;
@@ -202,7 +200,6 @@
     animation: specularFast 3.8s ease-in-out infinite;
   }
 
-  /* High-Contrast Ink Text with Soft Readability Halo (Replaces difference blend mode) */
   .hero-blend-content {
     color: #0F172A;
     text-shadow: 0 1px 18px rgba(250, 250, 252, 0.85);
@@ -215,7 +212,7 @@
   .hero-blend-content .bg-white {
     background-color: #000000;
   }
-  
+
   /* 3. PERFECTLY CENTERED ROUND-TO-SQUARE PROFILE MORPH */
   .profile-square-stage {
     position: relative;
@@ -293,11 +290,11 @@
     transform: translateY(0);
   }
 
-  /* 4. INTERACTIVE MAGNIFYING STACKED CARDS FOR EDUCATION & EXPERIENCE */
+  /* 4. INTERACTIVE MAGNIFYING STACKED CARDS FOR EDUCATION & EXPERIENCE (FIXED HEIGHT & FULL WIDTH) */
   .edu-stack-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.85rem;
     perspective: 1000px;
   }
   .edu-mag-card {
@@ -305,204 +302,227 @@
     background: #FFFFFF;
     border: 1px solid rgba(17, 17, 19, 0.1);
     border-radius: 16px;
-    padding: 1.15rem 1.35rem;
+    padding: 1.25rem 1.5rem;
     box-shadow: 0 6px 18px -10px rgba(17, 17, 19, 0.08);
     transition:
       transform 0.45s var(--ease-spring),
       box-shadow 0.45s var(--ease-spring),
       border-color 0.3s ease,
-      background-color 0.3s ease;
+      background-color 0.3s ease,
+      opacity 0.3s ease;
     cursor: pointer;
     transform-origin: center center;
     will-change: transform;
   }
   .edu-stack-list:hover .edu-mag-card:not(:hover) {
-    transform: scale(0.975);
-    opacity: 0.72;
+    transform: scale(0.985);
+    opacity: 0.76;
   }
   .edu-mag-card:hover,
   .edu-mag-card.active-edu {
-    transform: scale(1.038) translateY(-4px) !important;
+    transform: scale(1.018) translateY(-3px) !important;
     opacity: 1 !important;
     border-color: #111113;
     background: #FFFFFF;
-    box-shadow: 0 24px 48px -14px rgba(17, 17, 19, 0.18);
+    box-shadow: 0 22px 44px -14px rgba(17, 17, 19, 0.16);
     z-index: 20;
   }
   .edu-extra-drawer {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 0.45s var(--ease-spring), opacity 0.35s ease, margin-top 0.35s ease;
+    transition: max-height 0.5s var(--ease-spring), opacity 0.35s ease, margin-top 0.35s ease;
   }
   .edu-mag-card:hover .edu-extra-drawer,
   .edu-mag-card.active-edu .edu-extra-drawer {
-    max-height: 90px;
+    max-height: 280px;
     opacity: 1;
-    margin-top: 0.75rem;
+    margin-top: 0.85rem;
   }
 
-  /* 5. DUAL-TRACK DIAGONAL CONTINUOUS LOOPING BENTO CAROUSEL (3 VIDEOS + 5 PHOTOS) */
-  .ryla-diagonal-viewport {
+  /* ==========================================================================
+     5. WHITE-CANVAS ARCHITECTURAL CROSSHAIR GRID FOR RYLA (VIDEO REFERENCE STYLE)
+        - Pure white canvas + crisp black intersecting drafting lines
+        - 7 Total Cards in 4:3 Ratio (2 Videos + 5 Photos)
+     ========================================================================== */
+  .ryla-white-stage {
     position: relative;
     width: 100%;
-    height: 620px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    border: 1.5px solid #111113;
+    padding: 3rem 2.25rem;
     overflow: hidden;
-    border-radius: 22px;
-    background: radial-gradient(circle at 50% 50%, #000000 0%, #000000 100%);
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    box-shadow: 0 28px 65px -18px rgba(9, 11, 16, 0.55), inset 0 0 80px rgba(6, 182, 212, 0.07);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2.25rem;
-    perspective: 1200px;
+    /* Subtle background drafting paper grid + architectural corner ticks */
+    background-image:
+      linear-gradient(to right, rgba(17, 17, 19, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17, 17, 19, 0.055) 1px, transparent 1px);
+    background-size: 48px 48px;
+    box-shadow: 0 20px 50px -22px rgba(17, 17, 19, 0.12);
   }
-  @media (max-width: 768px) {
-    .ryla-diagonal-viewport {
-      height: 520px;
-      gap: 1.5rem;
+  @media (max-width: 640px) {
+    .ryla-white-stage {
+      padding: 1.75rem 1.15rem;
     }
   }
 
-  /* Soft vignette edges so cards fade in/out like a luxury agency showcase */
-  .ryla-diagonal-viewport::before,
-  .ryla-diagonal-viewport::after {
-    content: "";
+  /* Decorative architectural corner bracket lines like the start of the video */
+  .ryla-corner-bracket {
     position: absolute;
-    inset: 0;
+    width: 56px;
+    height: 56px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .ryla-corner-bracket.tl {
+    top: 16px; left: 16px;
+    border-top: 2px solid #111113;
+    border-left: 2px solid #111113;
+  }
+  .ryla-corner-bracket.tr {
+    top: 16px; right: 16px;
+    border-top: 2px solid #111113;
+    border-right: 2px solid #111113;
+  }
+  .ryla-corner-bracket.bl {
+    bottom: 16px; left: 16px;
+    border-bottom: 2px solid #111113;
+    border-left: 2px solid #111113;
+  }
+  .ryla-corner-bracket.br {
+    bottom: 16px; right: 16px;
+    border-bottom: 2px solid #111113;
+    border-right: 2px solid #111113;
+  }
+
+  .ryla-blueprint-grid {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2.75rem 2.25rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .ryla-blueprint-grid {
+      gap: 2.25rem 1.25rem;
+    }
+  }
+
+  /* Each 4:3 card cell wrapped with extended architectural black grid lines */
+  .ryla-grid-cell {
+    position: relative;
+    cursor: pointer;
+    background: #FFFFFF;
+    padding: 10px;
+    transition: transform 0.55s var(--ease-spring);
+  }
+  /* Top Row: 2 Featured 4:3 Cards side-by-side */
+  .ryla-span-6 { grid-column: span 12 / span 12; }
+  /* Middle Row: 3 4:3 Cards */
+  .ryla-span-4 { grid-column: span 12 / span 12; }
+  /* Bottom Row: 2 Featured 4:3 Cards */
+  @media (min-width: 640px) {
+    .ryla-span-6 { grid-column: span 6 / span 6; }
+    .ryla-span-4 { grid-column: span 6 / span 6; }
+  }
+  @media (min-width: 1024px) {
+    .ryla-span-6 { grid-column: span 6 / span 6; }
+    .ryla-span-4 { grid-column: span 4 / span 4; }
+  }
+
+  /* Extended Black Crosshair Drafting Lines around every card (Matches Video) */
+  .draft-line-top,
+  .draft-line-bottom {
+    position: absolute;
+    left: -18px;
+    right: -18px;
+    height: 1.5px;
+    background: #111113;
     pointer-events: none;
     z-index: 20;
+    transform-origin: center;
+    transition: left 0.45s var(--ease-spring), right 0.45s var(--ease-spring), background-color 0.3s ease;
   }
-  .ryla-diagonal-viewport::before {
-    background: linear-gradient(90deg, #090B10 0%, rgba(9,11,16,0) 12%, rgba(9,11,16,0) 88%, #090B10 100%);
-  }
-  .ryla-diagonal-viewport::after {
-    background: linear-gradient(180deg, rgba(9,11,16,0.7) 0%, rgba(9,11,16,0) 16%, rgba(9,11,16,0) 84%, rgba(9,11,16,0.7) 100%);
-  }
+  .draft-line-top { top: 0; }
+  .draft-line-bottom { bottom: 0; }
 
-  /*Rotated plane that gives both parallel tracks a true diagonal trajectory */
-  .ryla-diagonal-plane {
-    display: flex;
-    flex-direction: column;
-    gap: 2.2rem;
-    transform: rotate(-7deg) scale(1.08);
-    transform-origin: center center;
-    will-change: transform;
+  .draft-line-left,
+  .draft-line-right {
+    position: absolute;
+    top: -18px;
+    bottom: -18px;
+    width: 1.5px;
+    background: #111113;
+    pointer-events: none;
+    z-index: 20;
+    transform-origin: center;
+    transition: top 0.45s var(--ease-spring), bottom 0.45s var(--ease-spring), background-color 0.3s ease;
   }
+  .draft-line-left { left: 0; }
+  .draft-line-right { right: 0; }
 
-  @keyframes diagSlideLeft {
-    0%   { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-50%, 0, 0); }
-  }
-  @keyframes diagSlideRight {
-    0%   { transform: translate3d(-50%, 0, 0); }
-    100% { transform: translate3d(0, 0, 0); }
-  }
-
-  .ryla-track-left {
-    display: flex;
-    width: max-content;
-    gap: 1.5rem;
-    will-change: transform;
-    animation: diagSlideLeft 32s linear infinite;
-  }
-  .ryla-track-right {
-    display: flex;
-    width: max-content;
-    gap: 1.5rem;
-    will-change: transform;
-    animation: diagSlideRight 32s linear infinite;
-  }
-  .ryla-diagonal-viewport:hover .ryla-track-left,
-  .ryla-diagonal-viewport:hover .ryla-track-right {
-    animation-play-state: paused;
-  }
-
-  /* Individual Bento Item Wrapper (Holds Cyan Glow Label Above + Card Frame Below) */
-  .ryla-loop-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: transform 0.5s var(--ease-spring);
-  }
-  .ryla-loop-item:hover {
-    transform: translateY(-8px) scale(1.04);
+  /* Subtle tilt-to-straight entrance & hover extension like the video */
+  .ryla-grid-cell:hover {
+    transform: translateY(-4px);
     z-index: 30;
   }
-
-  /* 2-5 Word Description ABOVE Every Card with Expensive Cyan Glow */
-  .cyan-glow-caption {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.28rem 0.75rem;
-    border-radius: 9999px;
-    background: rgba(6, 182, 212, 0.12);
-    border: 1px solid rgba(34, 211, 238, 0.45);
-    color: #ECFEFF;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(34, 211, 238, 0.9), 0 0 20px rgba(6, 182, 212, 0.6);
-    box-shadow: 0 0 16px -2px rgba(6, 182, 212, 0.4), inset 0 0 8px rgba(34, 211, 238, 0.2);
-    transition: all 0.35s ease;
+  .ryla-grid-cell:hover .draft-line-top,
+  .ryla-grid-cell:hover .draft-line-bottom {
+    left: -28px;
+    right: -28px;
   }
-  .cyan-glow-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 9999px;
-    background: #22D3EE;
-    box-shadow: 0 0 10px #22D3EE, 0 0 18px #06B6D4;
-  }
-  .ryla-loop-item:hover .cyan-glow-caption {
-    background: rgba(6, 182, 212, 0.26);
-    border-color: #67E8F9;
-    box-shadow: 0 0 24px 2px rgba(34, 211, 238, 0.65), inset 0 0 12px rgba(103, 232, 249, 0.35);
-    transform: translateY(-2px);
+  .ryla-grid-cell:hover .draft-line-left,
+  .ryla-grid-cell:hover .draft-line-right {
+    top: -28px;
+    bottom: -28px;
   }
 
-  /* Bento Card Media Frame */
-  .ryla-bento-frame {
+  /* Strictly 4:3 Media Frame inside the intersecting black lines */
+  .ryla-media-4x3 {
     position: relative;
-    height: 195px;
-    border-radius: 16px;
+    width: 100%;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
-    background: #18181B;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
-    transition: border-color 0.35s ease, box-shadow 0.45s var(--ease-spring);
+    background: #F4F4F5;
+    border: 1px solid #111113;
   }
-  .ryla-bento-frame.w-rect {
-    width: 325px;
-  }
-  .ryla-bento-frame.w-square {
-    width: 195px;
-  }
-  @media (max-width: 768px) {
-    .ryla-bento-frame { height: 155px; }
-    .ryla-bento-frame.w-rect { width: 255px; }
-    .ryla-bento-frame.w-square { width: 155px; }
-  }
-  .ryla-loop-item:hover .ryla-bento-frame {
-    border-color: rgba(34, 211, 238, 0.75);
-    box-shadow: 0 22px 48px -10px rgba(6, 182, 212, 0.38);
-  }
-  .ryla-bento-frame img,
-  .ryla-bento-frame video {
+  .ryla-media-4x3 img,
+  .ryla-media-4x3 video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.65s var(--ease-spring);
   }
-  .ryla-loop-item:hover .ryla-bento-frame img,
-  .ryla-loop-item:hover .ryla-bento-frame video {
-    transform: scale(1.07);
+  .ryla-grid-cell:hover .ryla-media-4x3 img,
+  .ryla-grid-cell:hover .ryla-media-4x3 video {
+    transform: scale(1.05);
+  }
+
+  /* Editorial Meta Bar under each 4:3 frame */
+  .ryla-cell-meta {
+    padding-top: 0.65rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    background: #FFFFFF;
+  }
+  .ryla-badge-4x3 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 15;
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #111113;
+    color: #111113;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   /* 6. COMPACT WORK SHOWCASE TRANSITIONS */
@@ -537,7 +557,7 @@
     font-weight: 600;
   }
 
-  /* 7. LUSION-STYLE 3D FLIPPING CERTIFICATE CARDS */
+  /* 7. LUSION-STYLE 3D FLIPPING CERTIFICATE CARDS (FULL WIDTH) */
   .lusion-cert-grid {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -556,7 +576,7 @@
   }
 
   .lusion-card-wrap {
-    height: 385px;
+    height: 395px;
     perspective: 1400px;
     cursor: pointer;
   }
@@ -644,7 +664,7 @@
   <div class="max-w-[1380px] mx-auto h-14 px-4 sm:px-12 flex items-center justify-between text-[13px]">
     <a href="#top" class="font-medium tracking-tight text-ink text-[14px] flex items-center gap-2">
       <span>SG</span>
-      <span class="hidden sm:inline-block font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-900 text-white"></span>
+      <span class="hidden sm:inline-block font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-900 text-white">PORTFOLIO</span>
     </a>
     <nav class="flex items-center gap-3 sm:gap-6 text-[12px] sm:text-[13px]">
       <a href="#work" class="bracket-link"><span class="b-char b-left">[</span><span>Projects</span><span class="b-char b-right">]</span></a>
@@ -659,7 +679,7 @@
 <!-- MAIN STACKED-PAGE WRAPPER -->
 <main id="top" class="progressive-grid-shell pt-16 pb-16 relative z-10">
 
-  <!-- PAGE 1: HERO SECTION -->
+  <!-- PAGE 1: HERO SECTION (FULL WIDTH — NO LEFT EMPTY SPACE) -->
   <section class="stack-page relative min-h-[74vh] flex flex-col justify-center">
     <div class="silk-stage" id="hero-silk">
       <div class="silk-band-primary"></div>
@@ -669,7 +689,7 @@
     </div>
 
     <div class="relative z-10 grid grid-cols-12 px-6 sm:px-10 py-14 sm:py-16 hero-blend-content">
-      <div class="col-span-12 lg:col-span-10 lg:col-start-2">
+      <div class="col-span-12">
         <div class="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.12em] px-3 py-1 border border-white/40 mb-5">
           <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
           BCA Graduate · Aspiring MSc Computer Science Student
@@ -680,7 +700,7 @@
           Software Development · Problem Solving · Digital Experiences
         </h1>
 
-        <p class="mt-6 max-w-[460px] text-[15px] leading-[1.65] opacity-90 font-normal">
+        <p class="mt-6 max-w-[640px] text-[15px] leading-[1.65] opacity-90 font-normal">
           Hello, I’m Sameer — a Computer Applications graduate from Karnatak University Dharwad. I enjoy building practical software projects, exploring programming concepts, and creating intuitive digital experiences. I’m currently preparing for postgraduate studies in Computer Science in Germany.
         </p>
 
@@ -697,15 +717,15 @@
     </div>
   </section>
 
-  <!-- PAGE 2: WORK SHOWCASE -->
+  <!-- PAGE 2: WORK SHOWCASE (FULL WIDTH — NO LEFT EMPTY SPACE) -->
   <section id="work" class="stack-page">
-    <div class="grid grid-cols-12 prog-line-h px-6 sm:px-10 py-7 sm:py-8 items-baseline">
-      <div class="col-span-12 lg:col-span-2 font-mono text-[11px] text-zinc-400 uppercase tracking-widest">01 / WORK</div>
-      <div class="col-span-12 lg:col-span-10 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+    <div class="prog-line-h px-6 sm:px-10 py-7 sm:py-8">
+      <div class="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mb-2">01 / WORK</div>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <h2 class="font-serif text-[40px] sm:text-[44px] leading-none tracking-tight text-ink">Projects</h2>
-          <p class="mt-1.5 max-w-[420px] text-[13.5px] leading-[1.55] text-zinc-500">
-            Two complete software products engineered in Python. Tap a project tab or click below to inspect.
+          <p class="mt-1.5 max-w-[540px] text-[13.5px] leading-[1.55] text-zinc-500">
+            Two complete software products engineered in Python and modern web technologies. Tap a project tab or click below to inspect.
           </p>
         </div>
         <div class="flex gap-2">
@@ -715,12 +735,12 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-12 items-center px-4 sm:px-10 py-8 sm:py-10 gap-y-6">
-      <div class="col-span-12 lg:col-span-4 flex flex-col gap-4 z-20 pr-2">
+    <div class="grid grid-cols-12 items-center px-6 sm:px-10 py-8 sm:py-10 gap-y-6 lg:gap-x-8">
+      <div class="col-span-12 lg:col-span-4 flex flex-col gap-4 z-20">
         <div class="work-nav-item active" data-index="0">
           <div class="work-title tracking-tight">Ledgerly GST</div>
           <div class="font-mono text-[10px] tracking-[0.08em] uppercase text-zinc-600 mt-0.5">PYTHON · STREAMLIT · SQLITE</div>
-          <p class="mt-1.5 text-[12.5px] text-zinc-500 leading-relaxed max-w-[260px]">
+          <p class="mt-1.5 text-[12.5px] text-zinc-500 leading-relaxed">
             A GST invoice generation application designed around Indian retail billing workflows. It supports GST calculations, including CGST/SGST and IGST, invoice management, and PDF invoice generation.
             Key learning: Translating real-world billing workflows into application logic, database operations, and document generation.
           </p>
@@ -729,21 +749,21 @@
         <div class="work-nav-item" data-index="1">
           <div class="work-title tracking-tight">Sorting Visualizer</div>
           <div class="font-mono text-[10px] tracking-[0.08em] uppercase text-zinc-600 mt-0.5">HTML · CSS · JavaScript</div>
-          <p class="mt-1.5 text-[12.5px] text-zinc-500 leading-relaxed max-w-[260px]">
+          <p class="mt-1.5 text-[12.5px] text-zinc-500 leading-relaxed">
             An interactive browser-based application that demonstrates sorting algorithms through visual step-by-step execution. Users can explore sorting behaviour, experiment with custom datasets, and understand how different algorithms organise data.
             Key learning: Algorithm visualisation, interactive web development, and presenting computational concepts through visual interfaces.
           </p>
         </div>
 
-        <div class="pt-3 border-t border-zinc-200/80 flex items-center justify-between max-w-[240px] text-[11px] font-mono text-zinc-400">
+        <div class="pt-3 border-t border-zinc-200/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
           <span id="work-step-counter">PROJECT 01 / 02</span>
-          <a id="work-repo-link" href="https://github.com/sameer26412/gst-invoice-app" target="_blank" rel="noopener" class="text-ink hover:underline">01 Repo ↗</a>
-          <a id="work-repo-link" href="https://sorting-algorithm-visualizer-phi-ecru.vercel.app/" target="_blank" rel="noopener" class="text-ink hover:underline">02 Live↗</a>
+          <a href="https://github.com/sameer26412/gst-invoice-app" target="_blank" rel="noopener" class="text-ink hover:underline">01 Repo ↗</a>
+          <a href="https://sorting-algorithm-visualizer-phi-ecru.vercel.app/" target="_blank" rel="noopener" class="text-ink hover:underline">02 Live ↗</a>
         </div>
       </div>
 
       <div class="col-span-12 lg:col-span-8 relative h-[420px] sm:h-[490px] flex items-center justify-center">
-     <!-- PROJECT 01: BOTH LEDGERLY IPHONES -->
+        <!-- PROJECT 01: BOTH LEDGERLY IPHONES -->
         <div class="work-slide active" data-slide="0">
           <div class="w-full h-full rounded-xl bg-gradient-to-b from-[#F4F4F1] to-[#E5E5E0] flex flex-row items-center justify-center gap-3 sm:gap-8 p-3 sm:p-5 overflow-hidden border border-black/10 shadow-sm">
 
@@ -776,7 +796,7 @@
             </div>
 
           </div>
-        </div>    
+        </div>
 
         <!-- PROJECT 02: SORTING ALGORITHM VISUALIZER -->
         <div class="work-slide" data-slide="1">
@@ -810,446 +830,350 @@
     </div>
   </section>
 
-  <!-- PAGE 3: ABOUT, CENTERED ROUND-TO-SQUARE PHOTO & MAGNIFYING EDUCATION STACK -->
+  <!-- PAGE 3: ABOUT, CENTERED ROUND-TO-SQUARE PHOTO & MAGNIFYING EDUCATION STACK (FULL WIDTH — NO LEFT EMPTY SPACE) -->
   <section id="about" class="stack-page px-6 sm:px-10 py-14 sm:py-16">
-    <div class="grid grid-cols-12 gap-y-10 items-start">
-      <div class="col-span-12 lg:col-span-2 font-mono text-[11px] text-zinc-400 uppercase tracking-widest">
+    <div class="w-full">
+      <div class="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mb-2">
         02 / PROFILE
       </div>
 
-      <div class="col-span-12 lg:col-span-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-7">
-            <h2 class="font-serif text-[40px] sm:text-[44px] leading-none tracking-tight text-ink">About & Background</h2>
-            <p class="mt-5 font-serif text-[clamp(1.45rem,2.3vw,2rem)] leading-[1.3] text-ink">
-              I’m a Bachelor of Computer Applications graduate from Karnatak University, Dharwad, with an interest in software development, problem-solving, and user-centred digital experiences.
-              
-            </p>
-            <p class="mt-3.5 text-[14.5px] text-zinc-600 leading-relaxed">
-              Alongside my academic preparation, I work part-time at Rushab Paints & Hardwares in Haveri, where I support customer service, retail billing, inventory coordination, and daily business operations.
-              My undergraduate studies introduced me to programming, databases, and computing fundamentals. Through independent projects, I have been developing my practical understanding of software development and exploring how technology can address everyday problems.
-            </p>
-          </div>
-
-          <div class="lg:col-span-5 flex flex-col items-center justify-center">
-            <div id="profile-morph-trigger" class="profile-square-stage" title="Tap or hover to morph into full square portrait">
-              <div class="profile-ring-guide"></div>
-              <div class="profile-clip-box">
-                <img src="assets%20for%20portfolio/animation/IMG_20261113_053239.jpg"
-                     draggable="false"
-                     onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/certificate_moment_card.jpg';"
-                     alt="Sameer Ganate Portrait"
-                     class="profile-square-img">
-                <div class="profile-hi-badge">
-                  <div class="font-serif text-2xl leading-none">👋 Hi, I’m Sameer!</div>
-                  <div class="font-mono text-[9px] text-zinc-300 mt-1 uppercase tracking-wider">prospective student MSc</div>
-                </div>
-              </div>
-            </div>
-            <div class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 text-white font-mono text-[10px] uppercase tracking-wider shadow-sm">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Hover → Circle → </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- MAGNIFYING STACKED CARDS FOR EDUCATION & CURRENT STATE -->
-        <div class="mt-10">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-mono text-[10.5px] uppercase tracking-wider text-zinc-400">INTERACTIVE TIMELINE · HOVER OR TAP TO MAGNIFY</span>
-            <span class="font-mono text-[10px] text-zinc-400">3 MILESTONES</span>
-          </div>
-
-          <div class="edu-stack-list" id="edu-stack-list">
-            <div class="edu-mag-card active-edu">
-              <div class="grid grid-cols-12 items-baseline gap-2">
-                <div class="col-span-12 sm:col-span-3 font-mono text-[12px] text-ink font-semibold flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <span>2026 — Present</span>
-                </div>
-                <div class="col-span-12 sm:col-span-5 font-serif text-2xl text-ink">Sales Representative & Inventory Coordinator Part-time</div>
-                <div class="col-span-12 sm:col-span-4 text-zinc-600 text-[13px]">Rushan Paints and Hardwares Retail Business · Haveri, Karnataka</div>
-              </div>
-              <div class="edu-extra-drawer border-t border-zinc-100 pt-2.5 flex flex-wrap items-center justify-between gap-2 text-[12.5px] text-zinc-600">
-                <span>
-                  Assist customers with selecting paints, hardware, and construction materials.
-
-                  Support retail billing using manual processes and accounting software.
-
-                  Assist with GST invoicing and related billing activities.
-
-                  Maintain inventory records using manual and digital methods.
-
-                  Monitor stock availability and coordinate replenishment with suppliers.
-
-                  Support customer inquiries and daily showroom operations.
-                </span>
-                <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-900 text-white shrink-0">CURRENT ROLE</span>
-              </div>
-            </div>
-
-            <div class="edu-mag-card">
-              <div class="grid grid-cols-12 items-baseline gap-2">
-                <div class="col-span-12 sm:col-span-3 font-mono text-[12px] text-zinc-500">2020 — Aug 2023</div>
-                <div class="col-span-12 sm:col-span-5 font-serif text-2xl text-ink">Bachelor of Computer Applications (BCA)</div>
-                <div class="col-span-12 sm:col-span-4 text-zinc-600 text-[13px]">Karnatak University, Dharwad (IBMR College)</div>
-              </div>
-              <div class="edu-extra-drawer border-t border-zinc-100 pt-2.5 flex flex-wrap items-center justify-between gap-2 text-[12.5px] text-zinc-600">
-                <span>Graduated with First Class Distinction CGPA: (7.2 /10 / A+ Standing). Core focus in Python programming, relational databases (SQLite), data structures, and computing fundamentals.</span>
-                <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 shrink-0">Bachelor's degree</span>
-              </div>
-            </div>
-
-            
-            <div class="edu-mag-card">
-              <div class="grid grid-cols-12 items-baseline gap-2">
-                <div class="col-span-12 sm:col-span-3 font-mono text-[12px] text-zinc-500">2019 — 2020</div>
-                <div class="col-span-12 sm:col-span-5 font-serif text-2xl text-ink">Diploma in Library and Information Science (D.LISc)</div>
-                <div class="col-span-12 sm:col-span-4 text-zinc-600 text-[13px]">Sabarmati University Calorx Teachers' University· Ahmedabad, Gujarat</div>
-              </div>
-              <div class="edu-extra-drawer border-t border-zinc-100 pt-2.5 flex flex-wrap items-center justify-between gap-2 text-[12.5px] text-zinc-600">
-                <span>Completed D.LISc (2019–2020), specializing in Library Classification & Cataloging, Library & Society, and Library Management.</span>
-                <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 shrinkc-0">D.LISc</span>
-              </div>
-            </div>
-            <div class="edu-mag-card">
-              <div class="grid grid-cols-12 items-baseline gap-2">
-                <div class="col-span-12 sm:col-span-3 font-mono text-[12px] text-zinc-500">2018 — 2019</div>
-                <div class="col-span-12 sm:col-span-5 font-serif text-2xl text-ink">Certificate in Library and Information Science (C.LISc)</div>
-                <div class="col-span-12 sm:col-span-4 text-zinc-600 text-[13px]">Calorx Teachers' University, 2019 · Ahmedabad, Gujarat</div>
-              </div>
-              <div class="edu-extra-drawer border-t border-zinc-100 pt-2.5 flex flex-wrap items-center justify-between gap-2 text-[12.5px] text-zinc-600">
-                <span>Completed C.LISc (2018–2019), specializing in Organisation of Library Materials</span>
-                <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 shrink-0">C.LISc</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PAGE 4: SIDE EXPERIMENTS & 2D ANIMATION STUDIO -->
-  <section id="experiments" class="stack-page px-6 sm:px-10 py-14 sm:py-16">
-    <div class="grid grid-cols-12">
-      <div class="col-span-12 lg:col-span-2 font-mono text-[11px] text-zinc-400 uppercase tracking-widest">
-        03 / PLAY & MOTION
-      </div>
-
-      <div class="col-span-12 lg:col-span-10">
-        <div class="pb-6">
-          <h2 class="font-serif text-[40px] sm:text-[44px] leading-none tracking-tight text-ink">Side Experiments & 2D Animation</h2>
-          <p class="mt-2 text-[13.5px] text-zinc-300 max-w-lg">
-            An exploration of visual storytelling through original 2D animation concepts, scene composition, and digital image editing, using creative tools to develop and refine visual narratives.
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8">
+          <h2 class="font-serif text-[40px] sm:text-[44px] leading-none tracking-tight text-ink">About & Background</h2>
+          <p class="mt-5 font-serif text-[clamp(1.45rem,2.3vw,2rem)] leading-[1.3] text-ink">
+            I’m a Bachelor of Computer Applications graduate from Karnatak University, Dharwad, with an interest in software development, problem-solving, and user-centred digital experiences.
+          </p>
+          <p class="mt-3.5 text-[14.5px] text-zinc-600 leading-relaxed">
+            Alongside my academic preparation, I work part-time at Rushab Paints & Hardwares in Haveri, where I support customer service, retail billing, inventory coordination, and daily business operations.
+            My undergraduate studies introduced me to programming, databases, and computing fundamentals. Through independent projects, I have been developing my practical understanding of software development and exploring how technology can address everyday problems.
           </p>
         </div>
 
-        <div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-black/15 bg-[#090D16] shadow-lg flex flex-col justify-between p-5 sm:p-8">
-          <video autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture class="absolute inset-0 w-full h-full object-cover z-20">
-            <source src="assets%20for%20portfolio/animation/three_frames_strip.mp4" type="video/mp4">
-            
+        <div class="lg:col-span-4 flex flex-col items-center justify-center">
+          <div id="profile-morph-trigger" class="profile-square-stage" title="Tap or hover to morph into full square portrait">
+            <div class="profile-ring-guide"></div>
+            <div class="profile-clip-box">
+              <img src="assets%20for%20portfolio/animation/IMG_20261113_053239.jpg"
+                   draggable="false"
+                   onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/certificate_moment_card.jpg';"
+                   alt="Sameer Ganate Portrait"
+                   class="profile-square-img">
+              <div class="profile-hi-badge">
+                <div class="font-serif text-2xl leading-none">👋 Hi, I’m Sameer!</div>
+                <div class="font-mono text-[9px] text-zinc-300 mt-1 uppercase tracking-wider">prospective student MSc</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 text-white font-mono text-[10px] uppercase tracking-wider shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Hover → Circle → Square</span>
+          </div>
+        </div>
+      </div>
 
-          <div class="relative z-30 flex items-center justify-between pointer-events-none">
-            <span class="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded bg-black/60 text-white backdrop-blur border border-white/15">
-              2D ANIME SHORT FILM
-            </span>
-            <span class="font-mono text-[10px] text-slate-300 bg-black/50 px-2 py-0.5 rounded">4K · 24FPS</span>
+      <!-- MAGNIFYING STACKED CARDS FOR EDUCATION & CURRENT STATE (FULL WIDTH) -->
+      <div class="mt-10 pt-8 border-t border-black/10">
+        <div class="flex items-center justify-between mb-4">
+          <span class="font-mono text-[10.5px] uppercase tracking-wider text-zinc-400">INTERACTIVE TIMELINE · HOVER OR TAP TO MAGNIFY</span>
+          <span class="font-mono text-[10px] text-zinc-400">4 MILESTONES</span>
+        </div>
+
+        <div class="edu-stack-list" id="edu-stack-list">
+          <div class="edu-mag-card active-edu">
+            <div class="grid grid-cols-12 items-baseline gap-2">
+              <div class="col-span-12 sm:col-span-3 font-mono text-[12px] text-ink font-semibold flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>2026 — Present</span>
+              </div>
+              <div class="col-span-12 sm:col-span-5 font-serif text-2xl text-ink">Sales Representative & Inventory Coordinator Part-time</div>
+              <div class="col-span-12 sm:col-span-4 text-zinc-600 text-[13px] sm:text-right">Rushab Paints and Hardwares · Haveri, Karnataka</div>
+            </div>
+            <div class="edu-extra-drawer border-t border-zinc-100 pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[12.5px] text-zinc-600">
+              <span class="leading-relaxed">
+                Assist customers with selecting paints, hardware, and construction materials · Support retail billing using manual processes and accounting software · Assist with GST invoicing and related billing activities · Maintain inventory records using manual and digital methods · Monitor stock availability and coordinate replenishment with suppliers · Support customer inquiries and daily showroom operations.
+              </span>
+              <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-900 text-white shrink-0 self-start sm:self-auto">CURRENT ROLE</span>
+            </div>
           </div>
 
-          
+          <div class="edu-mag-card">
+            <div class="grid grid-cols-12 items-baseline gap-2">
+              <div class="col-span-12 sm:col-span-3 font-mono text-[12px] text-zinc-500">2020 — 2023</div>
+              <div class="col-span-12 sm:col-span-5 font-serif text-2xl text-ink">Bachelor of Computer Applications (BCA)</div>
+              <div class="col-span-12 sm:col-span-4 text-zinc-600 text-[13px] sm:text-right">Karnatak University, Dharwad (IBMR College)</div>
+            </div>
+            <div class="edu-extra-drawer border-t border-zinc-100 pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[12.5px] text-zinc-600">
+              <span>Graduated with First Class Distinction CGPA: (7.20  / 10 · A+ Standing). Core focus in Python programming, relational databases (SQLite), data structures, and computing fundamentals.</span>
+              <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 shrink-0 self-start sm:self-auto">Bachelor's degree</span>
+            </div>
+          </div>
+
+          <div class="edu-mag-card">
+            <div class="grid grid-cols-12 items-baseline gap-2">
+              <div class="col-span-12 sm:col-span-3 font-mono text-[12px] text-zinc-500">2019 — 2020</div>
+              <div class="col-span-12 sm:col-span-5 font-serif text-2xl text-ink">Diploma in Library and Information Science (D.LISc)</div>
+              <div class="col-span-12 sm:col-span-4 text-zinc-600 text-[13px] sm:text-right">Sabarmati University (Calorx Teachers' University) · Ahmedabad, Gujarat</div>
+            </div>
+            <div class="edu-extra-drawer border-t border-zinc-100 pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[12.5px] text-zinc-600">
+              <span>Completed D.LISc (2019–2020), specializing in Library Classification & Cataloging, Library & Society, and Library Management.</span>
+              <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 shrink-0 self-start sm:self-auto">D.LISc</span>
+            </div>
+          </div>
+
+          <div class="edu-mag-card">
+            <div class="grid grid-cols-12 items-baseline gap-2">
+              <div class="col-span-12 sm:col-span-3 font-mono text-[12px] text-zinc-500">2018 — 2019</div>
+              <div class="col-span-12 sm:col-span-5 font-serif text-2xl text-ink">Certificate in Library and Information Science (C.LISc)</div>
+              <div class="col-span-12 sm:col-span-4 text-zinc-600 text-[13px] sm:text-right">Calorx Teachers' University, 2019 · Ahmedabad, Gujarat</div>
+            </div>
+            <div class="edu-extra-drawer border-t border-zinc-100 pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[12.5px] text-zinc-600">
+              <span>Completed C.LISc (2018–2019), specializing in Organisation of Library Materials.</span>
+              <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 shrink-0 self-start sm:self-auto">C.LISc</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAGE 4: SIDE EXPERIMENTS & 2D ANIMATION STUDIO (FULL WIDTH — NO LEFT EMPTY SPACE) -->
+  <section id="experiments" class="stack-page px-6 sm:px-10 py-14 sm:py-16">
+    <div class="w-full">
+      <div class="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mb-2">
+        03 / PLAY & MOTION
+      </div>
+
+      <div class="pb-6">
+        <h2 class="font-serif text-[40px] sm:text-[44px] leading-none tracking-tight text-ink">Side Experiments & 2D Animation</h2>
+        <p class="mt-2 text-[13.5px] text-zinc-500 max-w-2xl">
+          An exploration of visual storytelling through original 2D animation concepts, scene composition, and digital image editing, using creative tools to develop and refine visual narratives.
+        </p>
+      </div>
+
+      <div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-black/15 bg-[#090D16] shadow-lg flex flex-col justify-between p-5 sm:p-8">
+        <video autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture class="absolute inset-0 w-full h-full object-cover z-20">
+          <source src="assets%20for%20portfolio/animation/three_frames_strip.mp4" type="video/mp4">
+        </video>
+
+        <div class="relative z-30 flex items-center justify-between pointer-events-none">
+          <span class="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded bg-black/60 text-white backdrop-blur border border-white/15">
+            2D ANIME SHORT FILM
+          </span>
+          <span class="font-mono text-[10px] text-slate-300 bg-black/50 px-2 py-0.5 rounded">4K · 24FPS</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PAGE 5: DUAL-TRACK DIAGONAL CONTINUOUS LOOPING BENTO CAROUSEL (3 VIDEOS + 5 PHOTOS) -->
+  <!-- PAGE 5: NEW WHITE-CANVAS ARCHITECTURAL GRID RYLA SECTION (7 ITEMS IN 4:3 RATIO: 2 VIDEOS + 5 PHOTOS) -->
   <section id="ryla" class="stack-page px-6 sm:px-10 py-14 sm:py-16">
-    <div class="grid grid-cols-12">
-      <div class="col-span-12 lg:col-span-2 font-mono text-[11px] text-zinc-400 uppercase tracking-widest">
+    <div class="w-full">
+      <div class="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mb-2">
         04 / LEADERSHIP
       </div>
 
-      <div class="col-span-12 lg:col-span-10">
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 pb-8">
-          <div>
-            <h2 class="font-serif text-[40px] sm:text-[44px] leading-none tracking-tight text-ink">Rotary District-3192 Yuva Spandana-4</h2>
-            <p class="mt-2 text-[13.5px] text-zinc-500 max-w-xl">
-               Participated in a multi-district Rotary Youth Leadership Award (RYLA) program, collaborating with 100+ emerging leaders under experienced mentors and Indian Army veterans. Engaged in leadership challenges, motivational performances, sports, and team-building exercises across diverse groups, strengthening communication, adaptability, teamwork, and leadership skills.
-            </p>
-          </div>
-          <span class="font-mono text-[10px] uppercase tracking-wider text-cyan-950 bg-cyan-50 border border-cyan-300 px-3 py-1.5 rounded-full shrink-0 shadow-sm">
-             ↘ Hover to Preview
-          </span>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8">
+        <div>
+          <h2 class="font-serif text-[40px] sm:text-[44px] leading-none tracking-tight text-ink">Rotary District-3192 Yuva Spandana-4</h2>
+          <p class="mt-2 text-[13.5px] text-zinc-500 max-w-3xl leading-relaxed">
+            Participated in a multi-district Rotary Youth Leadership Award (RYLA) program, collaborating with 100+ emerging leaders under experienced mentors and Indian Army veterans. Engaged in leadership challenges, motivational performances, sports, and team-building exercises across diverse groups, strengthening communication, adaptability, teamwork, and leadership skills.
+          </p>
         </div>
-
-        <!-- ★ DIAGONAL CONTINUOUS LOOPING BENTO CAROUSEL -->
-        <div class="ryla-diagonal-viewport">
-          <div class="ryla-diagonal-plane">
-
-            <!-- ================= TOP DIAGONAL TRACK (4 UNIQUE BENTO CARDS -> MOVES DIAGONALLY LEFT) ================= -->
-            <div class="ryla-track-left">
-
-              <!-- SET A (ORIGINAL 4 TOP CARDS: 2 VIDEOS + 2 PHOTOS) -->
-              <!-- Top 1 (Video 1 - Rectangular): ryla_highlights.mp4 -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="0"
-                       data-type="video"
-                       data-src="assets%20for%20portfolio/rayla/five_people_transition.mp4"
-                       data-tag="01 / My Team"
-                       data-title="Yuva Spandana-4 Team Intro"
-                       data-desc="A glimpse into the people, teamwork, and shared experiences that made RYLA memorable. Capturing the energy of diverse individuals coming together, building connections, and growing through collaborative challenges.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Team Intro</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <video src="assets%20for%20portfolio/rayla/five_people_transition.mp4" autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture></video>
-                </div>
-              </article>
-
-              <!-- Top 2 (Photo 1 - Rectangular): certificate_moment_card.jpg -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="1"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/certificate_moment_card.jpg"
-                       data-tag="02 / RECOGNITION · PHOTO"
-                       data-title="Stage Award & Certificate Honor"
-                       data-desc="Honored on stage with the Rotary Youth Leadership Award (Yuva Spandana-4) certificate by Rotary Club of Bengaluru.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Stage Award & Recognition</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <img src="assets%20for%20portfolio/rayla/certificate_moment_card.jpg" alt="Stage Award & Recognition" draggable="false">
-                </div>
-              </article>
-
-              <!-- Top 3 (Video 2 - Square Bento): square_reel.mp4 / five_people_transition.mp4 -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="2"
-                       data-type="video"
-                       data-src="assets%20for%20portfolio/rayla/video_20261113_063515_edit.mp4"
-                       data-tag="03 / Campfire · MP4"
-                       data-title="Campfire & Team Bonding"
-                       data-desc="An evening of shared experiences, conversations, and team bonding. Strengthened connections with fellow participants while embracing collaboration beyond structured leadership activities.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Campfire & Team Bonding</span></div>
-                <div class="ryla-bento-frame w-square">
-                  <video autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture>
-                    <source src="assets%20for%20portfolio/rayla/video_20261113_063515_edit.mp4" type="video/mp4">
-                    <source src="assets%20for%20portfolio/rayla/video_20261113_063515_edit.mp4" type="video/mp4">
-                  </video>
-                </div>
-              </article>
-
-              <!-- Top 4 (Photo 2 - Rectangular): team_presentation_card.jpg -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="3"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/1794516817953.jpg"
-                       data-tag="04 / Group Memories · PHOTO"
-                       data-title="Team Strategy Stage Briefing"
-                       data-desc="A snapshot of the friendships and connections formed throughout the RYLA journey. Bringing together participants from diverse backgrounds through shared challenges, experiences, and unforgettable moments.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Team Strategy Stage Briefing</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <img src="assets%20for%20portfolio/rayla/1794516817953.jpg" alt="Team Strategy Stage Briefing" draggable="false">
-                </div>
-              </article>
-
-              <!-- SET B (DUPLICATE OF TOP 4 FOR SEAMLESS INFINITE DIAGONAL LOOP) -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="0"
-                       data-type="video"
-                       data-src="assets%20for%20portfolio/rayla/ryla_16x9_gallery.mp4"
-                       data-tag="01 / Recap"
-                       data-title="Yuva Spandana-4 Event Highlights"
-                       data-desc="Full widescreen highlight reel capturing outdoor leadership drills, stage presentations, and team milestones at Value Lanes.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Yuva Spandana Event Highlights </span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <video src="assets%20for%20portfolio/rayla/ryla_16x9_gallery.mp4" autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture></video>
-                </div>
-              </article>
-
-              <article class="ryla-card ryla-loop-item"
-                       data-index="1"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/IMG_20261112_021352.png"
-                       data-tag="02 / Houseould Strangers"
-                       data-title="Stage Award & Skit Winners"
-                       data-desc="Collaborated with fellow participants to deliver a creative motivational performance, combining storytelling, teamwork, and spontaneous coordination to communicate a meaningful message.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Skit Winners</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <img src="assets%20for%20portfolio/rayla/IMG_20261112_021352.png" alt="Stage Award & Recognition" draggable="false">
-                </div>
-              </article>
-
-              <article class="ryla-card ryla-loop-item"
-                       data-index="2"
-                       data-type="video"
-                       data-src="assets%20for%20portfolio/rayla/ryla_1x1_bouncy-1.mp4"
-                       data-tag="03 / from diverse backgrounds"
-                       data-title="A snapshot of the friendships"
-                       data-desc="A visual recap of the RYLA experience, capturing leadership activities, team challenges, performances, and memorable interactions across three days of learning and collaboration.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>From Diverse Backgrounds</span></div>
-                <div class="ryla-bento-frame w-square">
-                  <video autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture>
-                    <source src="assets%20for%20portfolio/rayla/ryla_1x1_bouncy-1.mp4" type="video/mp4">
-                    <source src="assets%20for%20portfolio/rayla/ryla_1x1_bouncy-1.mp4" type="video/mp4">
-                  </video>
-                </div>
-              </article>
-
-              <article class="ryla-card ryla-loop-item"
-                       data-index="3"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/team_presentation_card.jpg"
-                       data-tag="04 / PUBLIC SPEAKING · PHOTO"
-                       data-title="Communication & Team Presentation"
-                       data-desc="Presented ideas collaboratively while developing communication, public-speaking, and coordination skills. An opportunity to express perspectives, work under pressure, and contribute to a shared team outcome.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Communication & Team Presentation</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <img src="assets%20for%20portfolio/rayla/team_presentation_card.jpg" alt="Team Strategy Stage Briefing" draggable="false">
-                </div>
-              </article>
-
-            </div>
-
-            <!-- ================= BOTTOM PARALLEL TRACK (4 UNIQUE BENTO CARDS -> MOVES DIAGONALLY RIGHT) ================= -->
-            <div class="ryla-track-right">
-
-              <!-- SET A (ORIGINAL 4 BOTTOM CARDS: 1 VIDEO + 3 PHOTOS = TOTAL 3 VIDEOS & 5 PHOTOS) -->
-              <!-- Bottom 1 (Video 3 - Rectangular): five_people_transition.mp4 -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="4"
-                       data-type="video"
-                       data-src="assets%20for%20portfolio/rayla/ryla_1x1_bouncy-1.mp4"
-                       data-tag="05 / DELEGATION REEL · MP4"
-                       data-title="Transition Reel"
-                       data-desc="Dynamic widescreen motion sequence showcasing team synergy and peer leadership across districts.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Transition Reel</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <video src="assets%20for%20portfolio/rayla/ryla_1x1_bouncy-1.mp4" autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture></video>
-                </div>
-              </article>
-
-              <!-- Bottom 2 (Photo 3 - Rectangular): outdoor_challenge.jpg -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="5"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/480778146_1794531754378014.jpg"
-                       data-tag="06 / FIELD EXECUTION · PHOTO"
-                       data-title="Outdoor Obstacle Course Drill"
-                       data-desc="High-energy outdoor rope and obstacle challenges testing trust and rapid team coordination under pressure.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Outdoor  Drill</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <img src="assets%20for%20portfolio/rayla/480778146_1794531754378014.jpg"
-                       onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/I480778146_1794531754378014.jpg';this.closest('article').dataset.src=this.src;"
-                       alt="Outdoor Obstacle Course Drill" draggable="false" class="object-right">
-                </div>
-              </article>
-
-              <!-- Bottom 3 (Photo 4 - Square Bento): campfire_gathering.jpg -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="6"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/IMG_20261112_050302.jpg"
-                       data-tag="07 / EVENING SESSION · PHOTO"
-                       data-title="Evening Campfire Fellowship"
-                       data-desc="Evening campfire reflections, cultural exchange, and team bonding with fellow delegates at Value Lanes.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Evening Campfire Fellowship</span></div>
-                <div class="ryla-bento-frame w-square">
-                  <img src="assets%20for%20portfolio/rayla/IMG_20261112_050302.jpg"
-                       onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/team_presentation_card.jpg';this.closest('article').dataset.src=this.src;"
-                       alt="Evening Campfire Fellowship" draggable="false" class="object-top">
-                </div>
-              </article>
-
-              <!-- Bottom 4 (Photo 5 - Rectangular): group_delegation.jpg -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="7"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg"
-                       data-tag="08 / FULL COHORT · PHOTO"
-                       data-title="Multi-District Cohort Council"
-                       data-desc="Closing ceremony and full delegation group portrait with mentors and youth leaders at RYLA Yuva Spandana-4.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Multi-District Cohort Council</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <img src="assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg"
-                       onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/certificate_moment_card.jpg';this.closest('article').dataset.src=this.src;"
-                       alt="Multi-District Cohort Council" draggable="false" class="object-left">
-                </div>
-              </article>
-
-              <!-- SET B (DUPLICATE OF BOTTOM 4 FOR SEAMLESS INFINITE DIAGONAL LOOP) -->
-              <article class="ryla-card ryla-loop-item"
-                       data-index="4"
-                       data-type="video"
-                       data-src="assets%20for%20portfolio/rayla/rayla/ryla_16x9_gallery.mp4"
-                       data-tag="05 / DELEGATION REEL · MP4"
-                       data-title="Five Delegate Transition Reel"
-                       data-desc="Dynamic widescreen motion sequence showcasing team synergy and peer leadership across districts.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Five Delegate</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <video src="assets%20for%20portfolio/rayla/ryla_16x9_gallery.mp4" autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture></video>
-                </div>
-              </article>
-
-              <article class="ryla-card ryla-loop-item"
-                       data-index="5"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/IMG_20261112_022319.png"
-                       data-tag="06 / FIELD EXECUTION · PHOTO"
-                       data-title="Outdoor Obstacle Course Drill"
-                       data-desc="High-energy outdoor rope and obstacle challenges testing trust and rapid team coordination under pressure.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Outdoor Obstacle Course Drill</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <img src="assets%20for%20portfolio/rayla/IMG_20261112_022319.png"
-                       onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261112_022319.png';this.closest('article').dataset.src=this.src;"
-                       alt="Outdoor Obstacle Course Drill" draggable="false" class="object-right">
-                </div>
-              </article>
-
-              <article class="ryla-card ryla-loop-item"
-                       data-index="6"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/IMG_20261113_064356.jpg"
-                       data-tag="07 / EVENING SESSION · PHOTO"
-                       data-title="Evening Campfire Fellowship"
-                       data-desc="Evening campfire reflections, cultural exchange, and team bonding with fellow delegates at Value Lanes.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Evening Campfire Fellowship</span></div>
-                <div class="ryla-bento-frame w-square">
-                  <img src="assets%20for%20portfolio/rayla/IMG_20261113_064356.jpg"
-                       onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261113_064356.jpg';this.closest('article').dataset.src=this.src;"
-                       alt="Evening Campfire Fellowship" draggable="false" class="object-top">
-                </div>
-              </article>
-
-              <article class="ryla-card ryla-loop-item"
-                       data-index="7"
-                       data-type="image"
-                       data-src="assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg"
-                       data-tag="08 / FULL COHORT · PHOTO"
-                       data-title="Multi-District Cohort Council"
-                       data-desc="Closing ceremony and full delegation group portrait with mentors and youth leaders at RYLA Yuva Spandana-4.">
-                <div class="cyan-glow-caption"><span class="cyan-glow-dot"></span><span>Multi-District Cohort Council</span></div>
-                <div class="ryla-bento-frame w-rect">
-                  <img src="assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg"
-                       onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg';this.closest('article').dataset.src=this.src;"
-                       alt="Multi-District Cohort Council" draggable="false" class="object-left">
-                </div>
-              </article>
-
-            </div>
-
-          </div>
-        </div>
-
+        <span class="font-mono text-[10px] uppercase tracking-wider text-ink bg-white border border-black/20 px-3.5 py-1.5 rounded-full shrink-0 shadow-sm self-start sm:self-auto">
+          7 FRAMES · 4:3 ARCHITECTURAL GRID (2 VIDEOS · 5 PHOTOS)
+        </span>
       </div>
+
+      <!-- WHITE CANVAS WITH EXTENDED BLACK ARCHITECTURAL GRID LINES (INSPIRED BY ATTACHED VIDEO) -->
+      <div class="ryla-white-stage">
+        <div class="ryla-corner-bracket tl"></div>
+        <div class="ryla-corner-bracket tr"></div>
+        <div class="ryla-corner-bracket bl"></div>
+        <div class="ryla-corner-bracket br"></div>
+
+        <div class="ryla-blueprint-grid">
+
+          <!-- ================= ROW 1: TWO 4:3 VIDEOS ================= -->
+          <!-- ITEM 01 (VIDEO 1 OF 2 — 4:3): Team Intro -->
+          <article class="ryla-card ryla-grid-cell ryla-span-6"
+                   data-index="0"
+                   data-type="video"
+                   data-src="assets%20for%20portfolio/rayla/five_people_transition.mp4"
+                   data-tag="01 / MY TEAM · 4:3 VIDEO"
+                   data-title="Yuva Spandana-4 Team Intro"
+                   data-desc="A glimpse into the people, teamwork, and shared experiences that made RYLA memorable. Capturing the energy of diverse individuals coming together, building connections, and growing through collaborative challenges.">
+            <span class="draft-line-top"></span>
+            <span class="draft-line-bottom"></span>
+            <span class="draft-line-left"></span>
+            <span class="draft-line-right"></span>
+            <div class="ryla-media-4x3">
+              <span class="ryla-badge-4x3">01 · VIDEO 4:3</span>
+              <video src="assets%20for%20portfolio/rayla/five_people_transition.mp4" autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture></video>
+            </div>
+            <div class="ryla-cell-meta">
+              <h3 class="font-serif text-xl text-ink leading-none">Yuva Spandana-4 Team Intro</h3>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Team Intro ↗</span>
+            </div>
+          </article>
+
+          <!-- ITEM 02 (VIDEO 2 OF 2 — 4:3): Campfire & Team Bonding / Highlights -->
+          <article class="ryla-card ryla-grid-cell ryla-span-6"
+                   data-index="1"
+                   data-type="video"
+                   data-src="assets%20for%20portfolio/rayla/video_20261113_063515_edit.mp4"
+                   data-tag="02 / CAMPFIRE · 4:3 VIDEO"
+                   data-title="Campfire & Team Bonding"
+                   data-desc="An evening of shared experiences, conversations, and team bonding. Strengthened connections with fellow participants while embracing collaboration beyond structured leadership activities.">
+            <span class="draft-line-top"></span>
+            <span class="draft-line-bottom"></span>
+            <span class="draft-line-left"></span>
+            <span class="draft-line-right"></span>
+            <div class="ryla-media-4x3">
+              <span class="ryla-badge-4x3">02 · VIDEO 4:3</span>
+              <video autoplay muted loop playsinline controlsList="nodownload" disablePictureInPicture>
+                <source src="assets%20for%20portfolio/rayla/video_20261113_063515_edit.mp4" type="video/mp4">
+                <source src="assets%20for%20portfolio/rayla/ryla_16x9_gallery.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="ryla-cell-meta">
+              <h3 class="font-serif text-xl text-ink leading-none">Campfire & Team Bonding</h3>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Motion Reel ↗</span>
+            </div>
+          </article>
+
+          <!-- ================= ROW 2: THREE 4:3 PHOTOS ================= -->
+          <!-- ITEM 03 (PHOTO 1 OF 5 — 4:3): Stage Award & Certificate Honor -->
+          <article class="ryla-card ryla-grid-cell ryla-span-4"
+                   data-index="2"
+                   data-type="image"
+                   data-src="assets%20for%20portfolio/rayla/certificate_moment_card.jpg"
+                   data-tag="03 / RECOGNITION · 4:3 PHOTO"
+                   data-title="Stage Award & Certificate Honor"
+                   data-desc="Honored on stage with the Rotary Youth Leadership Award (Yuva Spandana-4) certificate by Rotary Club of Bengaluru.">
+            <span class="draft-line-top"></span>
+            <span class="draft-line-bottom"></span>
+            <span class="draft-line-left"></span>
+            <span class="draft-line-right"></span>
+            <div class="ryla-media-4x3">
+              <span class="ryla-badge-4x3">03 · PHOTO 4:3</span>
+              <img src="assets%20for%20portfolio/rayla/certificate_moment_card.jpg" alt="Stage Award & Certificate Honor" draggable="false">
+            </div>
+            <div class="ryla-cell-meta">
+              <h3 class="font-serif text-lg text-ink leading-none">Stage Award & Recognition</h3>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Award ↗</span>
+            </div>
+          </article>
+
+          <!-- ITEM 04 (PHOTO 2 OF 5 — 4:3): Outdoor Obstacle Course Drill -->
+          <article class="ryla-card ryla-grid-cell ryla-span-4"
+                   data-index="3"
+                   data-type="image"
+                   data-src="assets%20for%20portfolio/rayla/480778146_1794531754378014.jpg"
+                   data-tag="04 / FIELD EXECUTION · 4:3 PHOTO"
+                   data-title="Outdoor Obstacle Course Drill"
+                   data-desc="High-energy outdoor rope and obstacle challenges testing trust and rapid team coordination under pressure.">
+            <span class="draft-line-top"></span>
+            <span class="draft-line-bottom"></span>
+            <span class="draft-line-left"></span>
+            <span class="draft-line-right"></span>
+            <div class="ryla-media-4x3">
+              <span class="ryla-badge-4x3">04 · PHOTO 4:3</span>
+              <img src="assets%20for%20portfolio/rayla/480778146_1794531754378014.jpg"
+                   onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261112_022319.png';this.closest('article').dataset.src=this.src;"
+                   alt="Outdoor Obstacle Course Drill" draggable="false" class="object-right">
+            </div>
+            <div class="ryla-cell-meta">
+              <h3 class="font-serif text-lg text-ink leading-none">Outdoor Obstacle Course Drill</h3>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Field Drill ↗</span>
+            </div>
+          </article>
+
+          <!-- ITEM 05 (PHOTO 3 OF 5 — 4:3): Communication & Team Presentation -->
+          <article class="ryla-card ryla-grid-cell ryla-span-4"
+                   data-index="4"
+                   data-type="image"
+                   data-src="assets%20for%20portfolio/rayla/team_presentation_card.jpg"
+                   data-tag="05 / PUBLIC SPEAKING · 4:3 PHOTO"
+                   data-title="Communication & Team Presentation"
+                   data-desc="Presented ideas collaboratively while developing communication, public-speaking, and coordination skills. An opportunity to express perspectives, work under pressure, and contribute to a shared team outcome.">
+            <span class="draft-line-top"></span>
+            <span class="draft-line-bottom"></span>
+            <span class="draft-line-left"></span>
+            <span class="draft-line-right"></span>
+            <div class="ryla-media-4x3">
+              <span class="ryla-badge-4x3">05 · PHOTO 4:3</span>
+              <img src="assets%20for%20portfolio/rayla/team_presentation_card.jpg" alt="Communication & Team Presentation" draggable="false">
+            </div>
+            <div class="ryla-cell-meta">
+              <h3 class="font-serif text-lg text-ink leading-none">Communication & Presentation</h3>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Briefing ↗</span>
+            </div>
+          </article>
+
+          <!-- ================= ROW 3: TWO 4:3 PHOTOS ================= -->
+          <!-- ITEM 06 (PHOTO 4 OF 5 — 4:3): Team Strategy Stage Briefing / Group Memories -->
+          <article class="ryla-card ryla-grid-cell ryla-span-6"
+                   data-index="5"
+                   data-type="image"
+                   data-src="assets%20for%20portfolio/rayla/1794516817953.jpg"
+                   data-tag="06 / GROUP MEMORIES · 4:3 PHOTO"
+                   data-title="Team Strategy Stage Briefing"
+                   data-desc="A snapshot of the friendships and connections formed throughout the RYLA journey. Bringing together participants from diverse backgrounds through shared challenges, experiences, and unforgettable moments.">
+            <span class="draft-line-top"></span>
+            <span class="draft-line-bottom"></span>
+            <span class="draft-line-left"></span>
+            <span class="draft-line-right"></span>
+            <div class="ryla-media-4x3">
+              <span class="ryla-badge-4x3">06 · PHOTO 4:3</span>
+              <img src="assets%20for%20portfolio/rayla/1794516817953.jpg"
+                   onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261112_021352.png';this.closest('article').dataset.src=this.src;"
+                   alt="Team Strategy Stage Briefing" draggable="false">
+            </div>
+            <div class="ryla-cell-meta">
+              <h3 class="font-serif text-xl text-ink leading-none">Team Strategy Stage Briefing</h3>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Group Memories ↗</span>
+            </div>
+          </article>
+
+          <!-- ITEM 07 (PHOTO 5 OF 5 — 4:3): Multi-District Cohort Council -->
+          <article class="ryla-card ryla-grid-cell ryla-span-6"
+                   data-index="6"
+                   data-type="image"
+                   data-src="assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg"
+                   data-tag="07 / FULL COHORT · 4:3 PHOTO"
+                   data-title="Multi-District Cohort Council"
+                   data-desc="Closing ceremony and full delegation group portrait with mentors and youth leaders at RYLA Yuva Spandana-4.">
+            <span class="draft-line-top"></span>
+            <span class="draft-line-bottom"></span>
+            <span class="draft-line-left"></span>
+            <span class="draft-line-right"></span>
+            <div class="ryla-media-4x3">
+              <span class="ryla-badge-4x3">07 · PHOTO 4:3</span>
+              <img src="assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg"
+                   onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261112_050302.jpg';this.closest('article').dataset.src=this.src;"
+                   alt="Multi-District Cohort Council" draggable="false" class="object-left">
+            </div>
+            <div class="ryla-cell-meta">
+              <h3 class="font-serif text-xl text-ink leading-none">Multi-District Cohort Council</h3>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Full Cohort ↗</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- PAGE 6: LUSION-INSPIRED 3D FLIPPING CERTIFICATES -->
+  <!-- PAGE 6: LUSION-INSPIRED 3D FLIPPING CERTIFICATES (FULL WIDTH + FIXED HTML TAGS) -->
   <section id="certifications" class="stack-page px-6 sm:px-10 py-14 sm:py-16">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8 border-b border-black/10">
       <div>
         <span class="font-mono text-[10px] tracking-[0.14em] uppercase text-zinc-400">05 / CREDENTIALS</span>
         <h2 class="font-serif text-[40px] sm:text-[44px] leading-none tracking-tight text-ink mt-2">Certifications & Credentials</h2>
-        <p class="mt-2 text-[13.5px] text-zinc-500 max-w-xl">
-          A selection of professional development programmes and job simulations completed through recognised learning platforms. Each credential links to its original certificate or verification page.</strong>  
+        <p class="mt-2 text-[13.5px] text-zinc-500 max-w-2xl">
+          A selection of professional development programmes and job simulations completed through recognised learning platforms. Each credential links to its original certificate or verification page.
         </p>
       </div>
       <button type="button" id="flip-all-certs-btn" class="px-4 py-2 rounded-full bg-ink text-white font-mono text-[11px] uppercase tracking-wider hover:bg-zinc-800 transition shrink-0 self-start sm:self-auto">
@@ -1279,15 +1203,15 @@
 
           <div class="lusion-face lusion-face-back">
             <div class="flex items-start justify-between">
-              <span class="font-mono text-sm font-semibold tracking-wider uppercase text-ink">Excel Skills/span>
+              <span class="font-mono text-sm font-semibold tracking-wider uppercase text-ink">Excel Skills</span>
               <span class="w-7 h-7 rounded bg-ink text-white font-mono text-xs font-bold flex items-center justify-center">G</span>
             </div>
             <ul class="my-auto space-y-2.5 text-[12.5px] text-zinc-700 border-y border-zinc-200 py-4">
-              <li class="flex justify-between"><span class="text-zinc-400">Title</span><strong class="text-ink">Excel Skills for Business</strong></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Provider</span><span>Forage</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Date</span><span>January 21 2025</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Credential type</span><span class="font-mono text-[11px]">Certificate of Completion</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Focus</span><span>Macros & Financial Models</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Title</span><strong class="text-ink text-right">Excel Skills for Business</strong></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Provider</span><span class="text-right">Forage</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Date</span><span class="text-right">January 21 2025</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Credential type</span><span class="font-mono text-[11px] text-right">Certificate of Completion</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Focus</span><span class="text-right">Macros & Financial Models</span></li>
             </ul>
             <div class="flex items-center justify-between">
               <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/MBA4MnZTNFEoJZGnk/eLeZHcwX7CqLhhps7_MBA4MnZTNFEoJZGnk_FpARZWMkovfC3gxuq_1737498129362_completion_certificate.pdf" target="_blank" rel="noopener" class="verify-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-ink text-white font-mono text-[11px] hover:bg-zinc-800 transition">
@@ -1323,12 +1247,11 @@
               <span class="w-7 h-7 rounded bg-ink text-white font-mono text-xs font-bold flex items-center justify-center">N</span>
             </div>
             <ul class="my-auto space-y-2.5 text-[12.5px] text-zinc-700 border-y border-zinc-200 py-4">
-              <li class="flex justify-between"><span class="text-zinc-400">Title</span><strong class="text-ink">Time Management</strong></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Provider</span><span>NASBA · LinkedIn</span></li>
-          
-              <li class="flex justify-between"><span class="text-zinc-400">Date</span><span>Aug 19 2024</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Credential type</span><span>Course Completion</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Focus</span><span>Professional Development</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Title</span><strong class="text-ink text-right">Time Management</strong></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Provider</span><span class="text-right">NASBA · LinkedIn</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Date</span><span class="text-right">Aug 19 2024</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Credential type</span><span class="text-right">Course Completion</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Focus</span><span class="text-right">Professional Development</span></li>
             </ul>
             <div class="flex items-center justify-between">
               <a href="https://www.linkedin.com/learning/certificates/35e255ecbb0d4ba71e45e7ff02439f7e43042c199f6ed853d7842512ab2b2a74?trk=share_certificate" target="_blank" rel="noopener" class="verify-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-ink text-white font-mono text-[11px] hover:bg-zinc-800 transition">
@@ -1364,12 +1287,12 @@
               <span class="w-7 h-7 rounded bg-ink text-white font-mono text-xs font-bold flex items-center justify-center">M</span>
             </div>
             <ul class="my-auto space-y-2.5 text-[12.5px] text-zinc-700 border-y border-zinc-200 py-4">
-              <li class="flex justify-between"><span class="text-zinc-400">Title</span><strong class="text-ink">Career Essentials</strong></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Provider</span><span>Microsoft & LinkedIn</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Date</span><span>Aug 21 2024</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Credential type</span><span>Certificate of Completion</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Focus</span><span>Systems & Administration</span></li>
-            
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Title</span><strong class="text-ink text-right">Career Essentials</strong></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Provider</span><span class="text-right">Microsoft & LinkedIn</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Date</span><span class="text-right">Aug 21 2024</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Credential type</span><span class="text-right">Certificate of Completion</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Focus</span><span class="text-right">Systems & Administration</span></li>
+            </ul>
             <div class="flex items-center justify-between">
               <a href="https://www.linkedin.com/learning/certificates/38fb685ac1e8c0a26655494ba35360d5a6ffb2adf021d4b845b4e88bfb173c6d" target="_blank" rel="noopener" class="verify-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-ink text-white font-mono text-[11px] hover:bg-zinc-800 transition">
                 <span>Verify Credential</span><span>↗</span>
@@ -1401,20 +1324,20 @@
           <div class="lusion-face lusion-face-back">
             <div class="flex items-start justify-between">
               <span class="font-mono text-sm font-semibold tracking-wider uppercase text-ink">Marketing</span>
-              <span class="w-7 h-7 rounded bg-ink text-white font-mono text-xs font-bold flex items-center justify-center">A</span>
+              <span class="w-7 h-7 rounded bg-ink text-white font-mono text-xs font-bold flex items-center justify-center">G</span>
             </div>
             <ul class="my-auto space-y-2.5 text-[12.5px] text-zinc-700 border-y border-zinc-200 py-4">
-              <li class="flex justify-between"><span class="text-zinc-400">Title</span><strong class="text-ink">Digital Marketing</strong></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Provider</span><span>Google</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Date</span><span>Aug 30 2024</span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Credential type</span>Certificate of Completion<span></span></li>
-              <li class="flex justify-between"><span class="text-zinc-400">Focus</span><span>Search Engine Optimization</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Title</span><strong class="text-ink text-right">Digital Marketing</strong></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Provider</span><span class="text-right">Google</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Date</span><span class="text-right">Aug 30 2024</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Credential type</span><span class="text-right">Certificate of Completion</span></li>
+              <li class="flex justify-between gap-2"><span class="text-zinc-400">Focus</span><span class="text-right">Search Engine Optimization</span></li>
             </ul>
             <div class="flex items-center justify-between">
               <a href="https://skillshop.exceedlms.com/student/award/vYuhRNk5NqSjQUEH8utrZNw6" target="_blank" rel="noopener" class="verify-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-ink text-white font-mono text-[11px] hover:bg-zinc-800 transition">
                 <span>Verify Credential</span><span>↗</span>
               </a>
-              <span class="font-mono text-[11px] tracking-wider uppercase text-zinc-400 rotate-180 select-none">Google</span>
+              <span class="font-mono text-[11px] tracking-wider uppercase text-zinc-400 rotate-180 select-none">GOOGLE</span>
             </div>
           </div>
         </div>
@@ -1423,7 +1346,7 @@
     </div>
   </section>
 
-  <!-- PAGE 7: TOOLS MARQUEE & VERCEL-READY SERVERLESS CONTACT SECTION -->
+  <!-- PAGE 7: TOOLS MARQUEE & VERCEL-READY SERVERLESS CONTACT SECTION (FULL WIDTH) -->
   <section id="contact" class="stack-page overflow-hidden">
     <div class="px-6 sm:px-10 py-3.5 border-b border-black/10 flex items-center justify-between bg-white">
       <span class="font-mono text-[10px] tracking-[0.14em] uppercase text-zinc-400">TOOLS & STACK I USE</span>
@@ -1472,16 +1395,16 @@
     </div>
 
     <div class="bg-[#EAEEF6] px-6 sm:px-10 py-14 sm:py-16">
-      <div class="grid grid-cols-12 gap-y-10 items-start">
-        <div class="col-span-12 lg:col-span-2 font-mono text-[11px] text-zinc-500 uppercase tracking-widest">
-          06 / CONTACT
-        </div>
+      <div class="font-mono text-[11px] text-zinc-500 uppercase tracking-widest mb-3">
+        06 / CONTACT
+      </div>
 
-        <div class="col-span-12 lg:col-span-5 pr-0 lg:pr-8">
+      <div class="grid grid-cols-12 gap-y-10 lg:gap-x-10 items-start">
+        <div class="col-span-12 lg:col-span-6">
           <h2 class="font-serif text-[clamp(2.5rem,5vw,4.3rem)] leading-[1.02] tracking-tight text-ink">
             Let’s build something thoughtful.
           </h2>
-          <p class="mt-4 text-[14.5px] text-zinc-600 max-w-md leading-relaxed">
+          <p class="mt-4 text-[14.5px] text-zinc-600 max-w-lg leading-relaxed">
             Open to Master’s academic collaborations in Germany, software engineering internships, and UI/UX-driven Python projects.
           </p>
 
@@ -1501,7 +1424,7 @@
           </div>
         </div>
 
-        <div class="col-span-12 lg:col-span-5">
+        <div class="col-span-12 lg:col-span-6">
           <form id="contact-form" class="bg-white rounded-2xl p-6 sm:p-8 border border-black/10 shadow-sm space-y-4">
             <div class="flex items-center justify-between border-b border-zinc-100 pb-3">
               <span class="font-serif text-2xl text-ink">Send a direct message</span>
@@ -1544,7 +1467,7 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12">
-      <div class="lg:col-span-8 aspect-[16/10] bg-black flex items-center justify-center relative overflow-hidden p-2">
+      <div class="lg:col-span-8 aspect-[4/3] bg-black flex items-center justify-center relative overflow-hidden p-2">
         <img id="modal-img" class="hidden w-full h-full object-contain z-20" draggable="false" alt="Fullscreen Media">
         <video id="modal-video" class="hidden w-full h-full object-contain z-20" controls autoplay loop playsinline controlsList="nodownload" disablePictureInPicture></video>
       </div>
@@ -1600,16 +1523,13 @@
     }
   });
 
-  /* 1. PROGRESSIVE RAILS + REVERSIBLE STACKED-PAGE SCROLL DEPTH + 5-PERSON SPOTLIGHT */
+  /* 1. PROGRESSIVE RAILS + REVERSIBLE STACKED-PAGE SCROLL DEPTH */
   const shell = document.querySelector(".progressive-grid-shell");
   const railLeft = document.getElementById("rail-left");
   const railRight = document.getElementById("rail-right");
   const railFillL = document.getElementById("rail-fill-l");
   const railFillR = document.getElementById("rail-fill-r");
   const stackPages = document.querySelectorAll(".stack-page");
-  const personStrips = document.querySelectorAll(".person-strip");
-  const personIndicator = document.getElementById("active-person-indicator");
-  const fivePeopleCard = document.getElementById("five-people-card");
 
   function positionOuterRails() {
     const rect = shell.getBoundingClientRect();
@@ -1618,19 +1538,6 @@
   }
   window.addEventListener("resize", positionOuterRails);
   positionOuterRails();
-
-  function setSpotlightPerson(idx) {
-    personStrips.forEach((s, i) => s.classList.toggle("active-person", i === idx));
-    if (personIndicator) personIndicator.textContent = `0${idx + 1} / 05`;
-  }
-
-  personStrips.forEach((strip, i) => {
-    strip.addEventListener("mouseenter", () => setSpotlightPerson(i));
-    strip.addEventListener("click", (e) => {
-      e.stopPropagation();
-      setSpotlightPerson(i);
-    });
-  });
 
   function onScrollUpdate() {
     const scrollTop = window.scrollY;
@@ -1654,15 +1561,6 @@
         page.style.transform = "scale(1)";
       }
     });
-
-    if (fivePeopleCard && !fivePeopleCard.matches(":hover")) {
-      const rect = fivePeopleCard.getBoundingClientRect();
-      if (rect.top < vh * 0.85 && rect.bottom > vh * 0.15) {
-        const progress = Math.min(Math.max((vh * 0.85 - rect.top) / (vh * 0.7), 0), 0.99);
-        const activeIdx = Math.floor(progress * 5);
-        setSpotlightPerson(activeIdx);
-      }
-    }
   }
   window.addEventListener("scroll", onScrollUpdate, { passive: true });
   onScrollUpdate();
@@ -1767,7 +1665,7 @@
     });
   });
 
-  /* 6. RYLA FULLSCREEN MODAL */
+  /* 6. RYLA FULLSCREEN MODAL (WORKS WITH ALL 7 4:3 CARDS) */
   const rylaCards = document.querySelectorAll(".ryla-card");
   const modal = document.getElementById("ryla-modal");
   const modalTag = document.getElementById("modal-tag");
@@ -1828,7 +1726,7 @@
       ta.remove();
     }
     copyLabel.textContent = "✓ Copied: sameermghanate401@gmail.com";
-    setTimeout(() => { copyLabel.textContent = "sameermghanate@gmail.com (Copy)"; }, 2500);
+    setTimeout(() => { copyLabel.textContent = "sameermghanate401@gmail.com (Copy)"; }, 2500);
   });
 
   const contactForm = document.getElementById("contact-form");
