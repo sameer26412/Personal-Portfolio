@@ -213,7 +213,7 @@
     background-color: #000000;
   }
 
-  /* 3. PERFECTLY CENTERED ROUND-TO-SQUARE PROFILE MORPH */
+  /* 3. PROFILE PHOTO — ORBIT FRAME (NO MORPH) + DOWNLOAD CV BUTTON */
   .profile-square-stage {
     position: relative;
     width: 268px;
@@ -221,73 +221,152 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    animation: profileFloat 5s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* soft pulse behind the photo */
+  .profile-square-stage::before {
+    content: "";
+    position: absolute;
+    width: 216px;
+    height: 216px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(17, 17, 19, 0.35);
+    animation: profilePing 3.6s ease-out infinite;
+    pointer-events: none;
+  }
+  .pf-orbit {
+    position: absolute;
+    inset: 0;
+    width: 268px;
+    height: 268px;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .pf-orbit circle { fill: none; }
+  .pf-orbit--outer { animation: pfSpin 14s linear infinite; }
+  .pf-orbit--outer .ring { stroke: rgba(17, 17, 19, 0.22); stroke-width: 1; }
+  .pf-orbit--outer .dot  { fill: #111113; }
+  .pf-orbit--inner { animation: pfSpin 30s linear infinite reverse; }
+  .pf-orbit--inner circle {
+    stroke: rgba(17, 17, 19, 0.45);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 9;
+    stroke-linecap: round;
   }
   .profile-clip-box {
     position: relative;
-    width: 268px;
-    height: 268px;
-    cursor: pointer;
-    clip-path: circle(32% at 50% 50%);
-    -webkit-clip-path: circle(32% at 50% 50%);
-    transition:
-      clip-path 0.6s var(--ease-spring),
-      -webkit-clip-path 0.6s var(--ease-spring),
-      transform 0.6s var(--ease-spring);
-    will-change: clip-path, transform;
+    width: 216px;
+    height: 216px;
+    border-radius: 50%;
+    overflow: hidden;
     background: #18181B;
-    box-shadow: 0 22px 45px -12px rgba(17, 17, 19, 0.25);
-  }
-  .profile-ring-guide {
-    position: absolute;
-    width: 182px;
-    height: 182px;
-    border-radius: 9999px;
-    border: 1.5px dashed rgba(17, 17, 19, 0.4);
-    pointer-events: none;
-    transition: opacity 0.35s ease, transform 0.55s var(--ease-spring);
-  }
-  .profile-square-stage:hover .profile-clip-box,
-  .profile-square-stage.expanded .profile-clip-box {
-    clip-path: inset(0% 0% 0% 0% round 22px);
-    -webkit-clip-path: inset(0% 0% 0% 0% round 22px);
-    transform: scale(1.03);
-  }
-  .profile-square-stage:hover .profile-ring-guide,
-  .profile-square-stage.expanded .profile-ring-guide {
-    opacity: 0;
-    transform: scale(1.3);
+    box-shadow: 0 22px 45px -14px rgba(17, 17, 19, 0.35);
+    transition: transform 0.6s var(--ease-spring), box-shadow 0.6s ease;
   }
   .profile-square-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 50% 24%;
-    transform: scale(1.02);
-    transition: transform 0.6s var(--ease-spring), object-position 0.6s var(--ease-spring);
+    filter: grayscale(1) contrast(1.05);
+    transform: scale(1.04);
+    transition: filter 0.6s ease, transform 0.8s var(--ease-spring);
+  }
+  .profile-square-stage:hover .profile-clip-box,
+  .profile-square-stage.expanded .profile-clip-box {
+    transform: scale(1.04);
+    box-shadow: 0 28px 50px -14px rgba(17, 17, 19, 0.45);
   }
   .profile-square-stage:hover .profile-square-img,
   .profile-square-stage.expanded .profile-square-img {
+    filter: grayscale(0) contrast(1);
     transform: scale(1);
-    object-position: 50% 20%;
   }
-  .profile-hi-badge {
-    position: absolute;
-    inset-inline: 12px;
-    bottom: 12px;
-    padding: 10px 14px;
-    border-radius: 14px;
-    background: rgba(17, 17, 19, 0.88);
-    backdrop-filter: blur(10px);
+  /* legacy elements kept in the markup (hidden) so nothing that references them can fail */
+  .profile-ring-guide,
+  .profile-hi-badge { display: none; }
+
+  @keyframes profileFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+  @keyframes profilePing {
+    0%   { transform: scale(1);    opacity: 0.55; }
+    100% { transform: scale(1.18); opacity: 0; }
+  }
+  @keyframes pfSpin { to { transform: rotate(360deg); } }
+  @keyframes cvArrow {
+    0%, 100% { transform: translateY(-1px); }
+    50%      { transform: translateY(3px); }
+  }
+
+  /* DOWNLOAD CV BUTTON */
+  .cv-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 268px;
+    height: 46px;
+    margin-top: 14px;
+    border-radius: 9999px;
+    border: 1.5px solid #111113;
+    background: #111113;
     color: #FFFFFF;
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.4s ease, transform 0.5s var(--ease-spring);
-    pointer-events: none;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 10px 22px -10px rgba(17, 17, 19, 0.45);
+    transition: color 0.25s ease 0.12s, transform 0.45s var(--ease-spring), box-shadow 0.45s ease;
+    -webkit-tap-highlight-color: transparent;
   }
-  .profile-square-stage:hover .profile-hi-badge,
-  .profile-square-stage.expanded .profile-hi-badge {
-    opacity: 1;
+  .cv-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #FFFFFF;
+    transform: translateY(101%);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+  }
+  .cv-btn__icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .cv-btn:hover,
+  .cv-btn:active,
+  .cv-btn:focus-visible {
+    color: #111113;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px -12px rgba(17, 17, 19, 0.4);
+  }
+  .cv-btn:hover::before,
+  .cv-btn:active::before,
+  .cv-btn:focus-visible::before {
     transform: translateY(0);
+  }
+  .cv-btn:hover .cv-btn__icon,
+  .cv-btn:focus-visible .cv-btn__icon {
+    animation: cvArrow 0.9s ease-in-out infinite;
+  }
+  .cv-btn:active { transform: scale(0.97); }
+  .cv-btn:focus-visible { outline: 2px solid #111113; outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .profile-square-stage { animation: none; }
+    .profile-square-stage::before { animation-duration: 8s; }
+    .pf-orbit--outer { animation-duration: 40s; }
+    .pf-orbit--inner { animation-duration: 80s; }
+    .cv-btn:hover .cv-btn__icon { animation: none; }
   }
 
   /* 4. INTERACTIVE MAGNIFYING STACKED CARDS FOR EDUCATION & EXPERIENCE (FIXED HEIGHT & FULL WIDTH) */
@@ -835,7 +914,7 @@
       </div>
     </div>
   </section>
-  <!-- PAGE 3: ABOUT, CENTERED ROUND-TO-SQUARE PHOTO & MAGNIFYING EDUCATION STACK (FULL WIDTH — NO LEFT EMPTY SPACE) -->
+  <!-- PAGE 3: ABOUT, ORBIT-FRAME PHOTO + DOWNLOAD CV & MAGNIFYING EDUCATION STACK (FULL WIDTH — NO LEFT EMPTY SPACE) -->
   <section id="about" class="stack-page px-6 sm:px-10 py-14 sm:py-16">
     <div class="w-full">
       <div class="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mb-2">
@@ -855,7 +934,14 @@
         </div>
 
         <div class="lg:col-span-4 flex flex-col items-center justify-center">
-          <div id="profile-morph-trigger" class="profile-square-stage" title="Tap or hover to morph into full square portrait">
+          <div id="profile-morph-trigger" class="profile-square-stage">
+            <svg class="pf-orbit pf-orbit--outer" viewBox="0 0 268 268" aria-hidden="true">
+              <circle class="ring" cx="134" cy="134" r="130"/>
+              <circle class="dot" cx="134" cy="4" r="4.5"/>
+            </svg>
+            <svg class="pf-orbit pf-orbit--inner" viewBox="0 0 268 268" aria-hidden="true">
+              <circle cx="134" cy="134" r="118"/>
+            </svg>
             <div class="profile-ring-guide"></div>
             <div class="profile-clip-box">
               <img src="assets%20for%20portfolio/animation/IMG_20261113_053239.jpg"
@@ -863,16 +949,21 @@
                    onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/certificate_moment_card.jpg';"
                    alt="Sameer Ganate Portrait"
                    class="profile-square-img">
-              <div class="profile-hi-badge">
-                <div class="font-serif text-2xl leading-none">👋 Hi, I’m Sameer!</div>
-                <div class="font-mono text-[9px] text-zinc-300 mt-1 uppercase tracking-wider">prospective student MSc</div>
-              </div>
+              <div class="profile-hi-badge"></div>
             </div>
           </div>
-          <div class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 text-white font-mono text-[10px] uppercase tracking-wider shadow-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Hover → Circle → Square</span>
-          </div>
+
+          <a id="cv-download"
+             class="cv-btn"
+             href="assets for portfolio/ledger project/pearsonalcvportfolio.pdf"
+             download="Sameer_Ghanate_CV.pdf"
+             aria-label="Download CV as PDF">
+            <svg class="cv-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/>
+            </svg>
+            <span class="cv-btn__label">Download CV</span>
+          </a>
         </div>
       </div>
 
@@ -1005,7 +1096,7 @@
                    data-index="0"
                    data-type="video"
                    data-src="assets%20for%20portfolio/rayla/Team7_Intro_Reel_NoJapanese.mp4"
-                   data-tag="01 / MY TEAM · VIDEO"
+                   data-tag="01 / MY TEAM ·VIDEO"
                    data-title="Yuva Spandana-4 Team Intro"
                    data-desc="A glimpse into the people, teamwork, and shared experiences that made RYLA memorable. Capturing the energy of diverse individuals coming together, building connections, and growing through collaborative challenges.">
             <span class="draft-line-top"></span>
@@ -1027,8 +1118,8 @@
                    data-index="1"
                    data-type="video"
                    data-src="assets%20for%20portfolio/rayla/RYLA_YuvaSpandana4_Reel.mp4"
-                   data-tag="02 / Moments · VIDEO"
-                   data-title="Campfire & Team Bonding"
+                   data-tag="02 / MOMENTS · VIDEO"
+                   data-title="Moments & Team Bonding"
                    data-desc="Moments of shared experiences, conversations, and team bonding. Strengthened connections with fellow participants while embracing collaboration beyond structured leadership activities.">
             <span class="draft-line-top"></span>
             <span class="draft-line-bottom"></span>
@@ -1042,8 +1133,8 @@
               </video>
             </div>
             <div class="ryla-cell-meta">
-              <h3 class="font-serif text-xl text-ink leading-none">Campfire & Team Bonding</h3>
-              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Motion Reel ↗</span>
+              <h3 class="font-serif text-xl text-ink leading-none">Moments & Team Bonding</h3>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Recap ↗</span>
             </div>
           </article>
 
@@ -1053,7 +1144,7 @@
                    data-index="2"
                    data-type="image"
                    data-src="assets%20for%20portfolio/rayla/certificate_moment_card.jpg"
-                   data-tag="03 / RECOGNITION · 4:3 PHOTO"
+                   data-tag="03 / RECOGNITION · PHOTO"
                    data-title="Stage Award & Certificate Honor"
                    data-desc="Honored on stage with the Rotary Youth Leadership Award (Yuva Spandana-4) certificate by Rotary Club of Bengaluru.">
             <span class="draft-line-top"></span>
@@ -1061,7 +1152,7 @@
             <span class="draft-line-left"></span>
             <span class="draft-line-right"></span>
             <div class="ryla-media-4x3">
-              <span class="ryla-badge-4x3">03 · PHOTO 4:3</span>
+              <span class="ryla-badge-4x3">03 · PHOTO </span>
               <img src="assets%20for%20portfolio/rayla/certificate_moment_card.jpg" alt="Stage Award & Certificate Honor" draggable="false">
             </div>
             <div class="ryla-cell-meta">
@@ -1074,8 +1165,8 @@
           <article class="ryla-card ryla-grid-cell ryla-span-4"
                    data-index="3"
                    data-type="image"
-                   data-src="assets%20for%20portfolio/rayla/480778146_1794531754378014.jpg"
-                   data-tag="04 / FIELD EXECUTION · 4:3 PHOTO"
+                   data-src="assets%20for%20portfolio/rayla/IMG_20261112_022319.png"
+                   data-tag="04 / FIELD EXECUTION · PHOTO"
                    data-title="Outdoor Obstacle Course Drill"
                    data-desc="High-energy outdoor rope and obstacle challenges testing trust and rapid team coordination under pressure.">
             <span class="draft-line-top"></span>
@@ -1083,8 +1174,8 @@
             <span class="draft-line-left"></span>
             <span class="draft-line-right"></span>
             <div class="ryla-media-4x3">
-              <span class="ryla-badge-4x3">04 · PHOTO 4:3</span>
-              <img src="assets%20for%20portfolio/rayla/480778146_1794531754378014.jpg"
+              <span class="ryla-badge-4x3">04 · PHOTO </span>
+              <img src="assets%20for%20portfolio/rayla/IMG_20261112_022319.png"
                    onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261112_022319.png';this.closest('article').dataset.src=this.src;"
                    alt="Outdoor Obstacle Course Drill" draggable="false" class="object-right">
             </div>
@@ -1099,7 +1190,7 @@
                    data-index="4"
                    data-type="image"
                    data-src="assets%20for%20portfolio/rayla/team_presentation_card.jpg"
-                   data-tag="05 / PUBLIC SPEAKING · 4:3 PHOTO"
+                   data-tag="05 / PUBLIC SPEAKING · PHOTO"
                    data-title="Communication & Team Presentation"
                    data-desc="Presented ideas collaboratively while developing communication, public-speaking, and coordination skills. An opportunity to express perspectives, work under pressure, and contribute to a shared team outcome.">
             <span class="draft-line-top"></span>
@@ -1107,7 +1198,7 @@
             <span class="draft-line-left"></span>
             <span class="draft-line-right"></span>
             <div class="ryla-media-4x3">
-              <span class="ryla-badge-4x3">05 · PHOTO 4:3</span>
+              <span class="ryla-badge-4x3">05 · PHOTO </span>
               <img src="assets%20for%20portfolio/rayla/team_presentation_card.jpg" alt="Communication & Team Presentation" draggable="false">
             </div>
             <div class="ryla-cell-meta">
@@ -1122,7 +1213,7 @@
                    data-index="5"
                    data-type="image"
                    data-src="assets%20for%20portfolio/rayla/1794516817953.jpg"
-                   data-tag="06 / GROUP MEMORIES · 4:3 PHOTO"
+                   data-tag="06 / GROUP MEMORIES · PHOTO"
                    data-title="Team Strategy Stage Briefing"
                    data-desc="A snapshot of the friendships and connections formed throughout the RYLA journey. Bringing together participants from diverse backgrounds through shared challenges, experiences, and unforgettable moments.">
             <span class="draft-line-top"></span>
@@ -1130,7 +1221,7 @@
             <span class="draft-line-left"></span>
             <span class="draft-line-right"></span>
             <div class="ryla-media-4x3">
-              <span class="ryla-badge-4x3">06 · PHOTO 4:3</span>
+              <span class="ryla-badge-4x3">06 · PHOTO </span>
               <img src="assets%20for%20portfolio/rayla/1794516817953.jpg"
                    onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261112_021352.png';this.closest('article').dataset.src=this.src;"
                    alt="Team Strategy Stage Briefing" draggable="false">
@@ -1146,7 +1237,7 @@
                    data-index="6"
                    data-type="image"
                    data-src="assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg"
-                   data-tag="07 / FULL COHORT · 4:3 PHOTO"
+                   data-tag="07 / FULL COHORT · PHOTO"
                    data-title="Multi-District Cohort Council"
                    data-desc="Closing ceremony and full delegation group portrait with mentors and youth leaders at RYLA Yuva Spandana-4.">
             <span class="draft-line-top"></span>
@@ -1154,7 +1245,7 @@
             <span class="draft-line-left"></span>
             <span class="draft-line-right"></span>
             <div class="ryla-media-4x3">
-              <span class="ryla-badge-4x3">07 · PHOTO 4:3</span>
+              <span class="ryla-badge-4x3">07 · PHOTO </span>
               <img src="assets%20for%20portfolio/rayla/IMG_20261113_064415.jpg"
                    onerror="this.onerror=null;this.src='assets%20for%20portfolio/rayla/IMG_20261112_050302.jpg';this.closest('article').dataset.src=this.src;"
                    alt="Multi-District Cohort Council" draggable="false" class="object-left">
@@ -1570,7 +1661,7 @@
   window.addEventListener("scroll", onScrollUpdate, { passive: true });
   onScrollUpdate();
 
-  /* 2. CENTERED ROUND-TO-SQUARE PROFILE MORPH & MAGNIFYING EDUCATION STACK */
+  /* 2. PROFILE PHOTO TAP (COLOUR REVEAL) & MAGNIFYING EDUCATION STACK */
   const profileTrigger = document.getElementById("profile-morph-trigger");
   if (profileTrigger) {
     profileTrigger.addEventListener("click", (e) => {
@@ -1581,6 +1672,17 @@
       if (!profileTrigger.contains(e.target)) {
         profileTrigger.classList.remove("expanded");
       }
+    });
+  }
+
+  /* 2b. DOWNLOAD CV BUTTON — brief "Downloading…" label (download itself works without this) */
+  const cvBtn = document.getElementById("cv-download");
+  if (cvBtn) {
+    const cvLabel = cvBtn.querySelector(".cv-btn__label");
+    cvBtn.addEventListener("click", () => {
+      if (!cvLabel) return;
+      cvLabel.textContent = "Downloading…";
+      setTimeout(() => { cvLabel.textContent = "Download CV"; }, 1800);
     });
   }
 
